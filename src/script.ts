@@ -22,7 +22,6 @@ buttons.forEach((button, index) => {
   button.addEventListener("click", () => {
     const isExpanded = expansion.classList.toggle("expanded");
 
-    // Rotate the arrow when opening and closing
     button.textContent = isExpanded ? "<" : ">";
   });
 });

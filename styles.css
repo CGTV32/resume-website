@@ -1,16 +1,18 @@
 :root {
-  --row-height: 20vh;
-  --box-height: 15vh;
-  --box-width: 35vh;
-  --box-offset-left: 5vh;
-  --box-radius: 3vh;
   --box-color: rgb(1, 53, 87);
-  --overlap: 2vh;
+  --row-height: 30vh;
+  --box-height: 22.5vh;
+  --box-width: 52.5vh;
+  --box-offset-left: 7.5vh;
+  --box-radius: 4.5vh;
+  --overlap: 3vh;
+
+  /* needs to be wide enough for the expansion to slide out fully */
+  --reasons-width: 125vh;
+  --divider-color: rgba(255, 255, 255, 0.25);
 }
 
 * {
-  border-style: solid;
-  border-color: white;
   box-sizing: border-box;
 }
 
@@ -24,15 +26,71 @@ body {
   background-color: #414141;
 }
 
+/* intro */
+
+.introduction-container {
+  display: block;
+  height: 28vh;
+  background-color: rgb(26, 11, 81);
+  text-align: center;
+}
+
+.intro-heading {
+  font-size: 45px;
+  display: inline-block;
+  margin-top: 18px;
+  color: white;
+}
+
+.intro-text {
+  color: white;
+  font-size: 24px;
+}
+
+/* layout: reasons | divider | side section */
+
 .content-container {
-  height: 100vh;
+  display: flex;
+  align-items: stretch;
 }
 
 .reasoning-grid {
+  flex: 0 0 var(--reasons-width);
   display: grid;
-  height: 100%;
+  min-height: 150vh;
   grid-template-rows: repeat(5, 1fr);
 }
+
+.vertical-divider {
+  flex: 0 0 2px;
+  margin: 5vh 0;
+  background-color: var(--divider-color);
+}
+
+.side-section {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 5vh 4vh;
+  color: white;
+}
+
+.skills-content {
+  position: sticky;
+  top: 5vh;
+}
+
+.side-heading {
+  margin: 0 0 2vh;
+  font-size: 32px;
+}
+
+.side-text {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+/* reasons */
 
 .reason-answer-container {
   position: relative;
@@ -91,6 +149,8 @@ body {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
+/* the panel that slides out */
+
 .reason-expansion {
   background-color: var(--box-color);
   border-radius: var(--box-radius);
@@ -132,6 +192,32 @@ body {
     transform 0.5s ease,
     opacity 0.3s ease,
     visibility 0s;
+}
+
+.side-section-divider {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.skills-divider {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.experience-divider {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+}
+
+.experience-heading {
+  font-size: 22px;
+}
+
+.experience-text {
+}
+
+.hyphen-list {
+  list-style-type: "- ";
 }
 
 @media (prefers-reduced-motion: reduce) {
