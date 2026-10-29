@@ -1,0 +1,142 @@
+:root {
+  --row-height: 20vh;
+  --box-height: 15vh;
+  --box-width: 35vh;
+  --box-offset-left: 5vh;
+  --box-radius: 3vh;
+  --box-color: rgb(1, 53, 87);
+  --overlap: 2vh;
+}
+
+* {
+  border-style: solid;
+  border-color: white;
+  box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: #414141;
+}
+
+.content-container {
+  height: 100vh;
+}
+
+.reasoning-grid {
+  display: grid;
+  height: 100%;
+  grid-template-rows: repeat(5, 1fr);
+}
+
+.reason-answer-container {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  overflow: hidden;
+}
+
+.reason-container {
+  background-color: var(--box-color);
+  border-radius: var(--box-radius);
+  width: var(--box-width);
+  height: var(--box-height);
+  margin-left: var(--box-offset-left);
+
+  display: grid;
+  grid-template-columns: 9fr 1fr;
+  align-items: center;
+
+  overflow: hidden;
+
+  position: relative;
+  z-index: 2;
+}
+
+.reason-content {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1vh;
+}
+
+.reason-arrow {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.arrow-button {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 1.5vh;
+  transition: background-color 0.3s ease;
+}
+
+.arrow-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.reason-expansion {
+  background-color: var(--box-color);
+  border-radius: var(--box-radius);
+  color: white;
+
+  width: var(--box-width);
+  height: var(--box-height);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  position: absolute;
+  left: calc(var(--box-offset-left) + var(--box-width) - var(--overlap));
+  top: 50%;
+
+  z-index: 1;
+
+  transform: translate(-100%, -50%);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    transform 0.5s ease,
+    opacity 0.3s ease,
+    visibility 0s linear 0.5s;
+}
+
+.reason-expansion.expanded {
+  transform: translate(20%, -50%);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transition:
+    transform 0.5s ease,
+    opacity 0.3s ease,
+    visibility 0s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reason-expansion,
+  .arrow-button {
+    transition: none;
+  }
+}

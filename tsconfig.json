@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "ES6",
+    "rootDir": "./src",      // Source folder
+    "outDir": "./dist",      // Compiled JS folder
+    "sourceMap": true        // Helps with browser debugging
+  }
+}
