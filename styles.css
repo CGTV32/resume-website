@@ -44,7 +44,35 @@ body {
 
 .intro-text {
   color: white;
-  font-size: 24px;
+  font-size: 3vh;
+}
+
+/* swipe: panels sit side by side in the track, the viewport clips them.
+   overflow-x: clip (not hidden) so position: sticky inside still works */
+
+.swipe-viewport {
+  overflow-x: clip;
+  touch-action: pan-y;
+}
+
+.swipe-viewport.dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.swipe-track {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+.swipe-panel {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+
+.second-panel {
+  padding: 5vh 7.5vh;
+  color: white;
 }
 
 /* layout: reasons | divider | side section */
@@ -222,7 +250,8 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .reason-expansion,
-  .arrow-button {
+  .arrow-button,
+  .swipe-track {
     transition: none;
   }
 }
